@@ -1,0 +1,82 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning</title>
+    <style>
+     body {
+        background-color: rgba(255, 235, 205, 0.325);
+     }
+     h1 {
+        text-align: center;
+        color: #3f1b01; 
+     }
+     h2 {
+        color: #622b03; 
+     }
+     h3 {
+        color: #6f3003; 
+     }
+</style>
+</head>
+<body> 
+
+    <h1>Use Cases for Machine Learning</h1>
+        <h2>Financial Fraud Detection</h2>
+
+<div>
+    <img src="{{ url_for('static', filename='Imagen1.png') }}" width="400">
+</div>
+
+            <h3>What is it?</h3>
+                <p>Financial fraud occurs when a transaction is carried out without legitimate authorization.</p>
+                <p>Examples:</p>
+                    <ul>
+                        <li>Unauthorized use of a credit or debit card</li>
+                        <li>Identity theft</li>
+                        <li>Suspicious transfers</li>
+                        <li>Fraud in digital banking</li>
+                    </ul>
+
+            <h3>Relationship with Machine Learning</h3>
+                <p>Financial fraud detection is directly related to Machine Learning because the system does not operate using
+                manually programmed fixed rules. Instead, it learns from large volumes of past transactions to identify suspicious patterns. 
+                It analyzes variables such as the amount, location, device used, purchase frequency, and customer history, and based on this 
+                data, it learns which combinations are commonly associated with fraud. As it receives more information, the model can adjust 
+                and improve its ability to detect anomalous behavior, even when criminals change their strategies. 
+                In essence, Machine Learning allows the system to evolve through experience and make automatic real-time decisions to reduce losses and protect users.</p>
+<div>
+    <img src="{{ url_for('static', filename='Images2.jpg') }}" width="270">
+</div>
+            <h3>How does it work in practice?</h3>
+                <p>When a transaction is made:</p>
+                    <ol>
+                        <li>The system collects information (amount, location, device, time, type of merchant, customer history).</li>
+                        <li>It compares that transaction with millions of previous transactions.</li>
+                        <li>It evaluates whether the behavior is normal or unusual.</li>
+                        <li>It automatically decides whether to:</li>
+                            <ul>
+                                <li>Approve the transaction</li>
+                                <li>Block the transaction</li>
+                                <li>Request additional verification</li>
+                            </ul>
+                    </ol>
+                <p>All of this happens in milliseconds.</p>
+
+            <h3>What exactly does the model learn?</h3>
+                <p>The model learns:</p>
+                    <ul>
+                        <li>Which combinations of variables are commonly associated with fraud.</li>
+                        <li>What behaviors are normal for each user.</li>
+                        <li>Which sudden changes may indicate risk.</li>
+                    </ul>
+
+                <p>For example, it does not only analyze a high amount, but the complete context: 
+                    a different country, a new device, and an unusual time all at once.</p>
+    
+                
+
+
+</body>
+</html>
