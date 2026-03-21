@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logistic Regression</title>
+</head>
+<body>
+
+<h1>Ejecutar Modelo de Regresión Logística</h1>
+
+<form method="POST" action="/LogisticRegression/">
+
+    Edad: <input type="number" name="edad"><br>
+    Ingreso: <input type="number" name="ingreso"><br>
+    Visitas web: <input type="number" name="visitas"><br>
+    Tiempo sitio: <input type="number" step="0.1" name="tiempo"><br>
+    Compras previas: <input type="number" name="compras"><br>
+    Descuento usado: <input type="number" name="descuento"><br>
+
+    <button type="submit">Ejecutar Modelo</button>
+
+</form>
+
+{% if result %}
+    <h2>Salida del modelo:</h2>
+    <pre>{{ result }}</pre>
+{% endif %}
+
+</body>
+</html>
