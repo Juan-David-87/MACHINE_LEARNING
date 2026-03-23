@@ -13,7 +13,7 @@ def home():
 
 @app.route('/FirstPage/<name>')
 def firstPage(name):
-    return render_template('index.html', name=name)
+    return render_template('UseCaseYira.html', name=name)
 
 @app.route("/LinearRegression/", methods=['GET', 'POST'])
 def calculateGrade(): 
