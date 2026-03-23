@@ -1,0 +1,76 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning</title>
+    <style>
+     body {
+        background-color: rgba(255, 235, 205, 0.325);
+     }
+     h1 {
+        text-align: center;
+        color: #3f1b01; 
+     }
+     h2 {
+        color: #622b03; 
+     }
+     h3 {
+        color: #6f3003; 
+     }
+</style>
+</head>
+<body> 
+
+    <h1>Use Cases for Machine Learning</h1>
+        <h2>Image Recognition</h2>
+
+<div>
+    <img src="{{ url_for('static', filename='Image Recognition in Machine Learning.png') }}" width="400">
+</div>
+
+            <h3>Image Recognition in Machine Learning</h3>
+                <p>Image recognition is a technique in artificial intelligence that allows 
+                    a computer to identify objects within an image, such as distinguishing 
+                    between a cat and a dog. Instead of “seeing” like a human, the system 
+                    analyzes the numerical values of pixels to detect patterns.</p>
+            
+            <h3>How does it work?</h3>
+                <p>The basic process is:</p>
+                    <ol>
+                        <li>Data: Many labeled images are used (e.g., “cat” or “dog”).</li>
+                        <li>Preprocessing: Images are resized and formatted.</li>
+                        <li>Training: A model, usually a Convolutional Neural Network (CNN), learns patterns.</li>
+                        <li>Prediction: The model calculates probabilities and decides which object appears in the image.</li>
+                    </ol>
+
+            <h3>How does it learn?</h3>
+                <div>
+                    <img src="{{ url_for('static', filename='Images2.jpg') }}" width="270">
+                </div>
+                <p>The model compares its predictions with the correct answers, calculates the error, and adjusts its parameters 
+                    to improve. This process is repeated many times until good accuracy is achieved.</p>
+                    
+            <h3>Applications</h3>
+                    <ul>
+                        <li> Medical diagnosis</li>
+                        <li>Facial recognition</li>
+                        <li>Autonomous vehicles</li>
+                        <li>Quality control</li>
+                    </ul>
+            <h3>Limitations</h3>
+                    <ul>
+                        <li> Requires large amounts of data</li>
+                        <li>Can have biases</li>
+                        <li>Often lacks explainabilit</li>
+                        <li>Can fail with small changes in the image</li>
+                    </ul>
+
+            <h3>Conclusion</h3>
+                <p>Image recognition identifies objects by analyzing 
+                    visual data patterns. It is a powerful tool, but 
+                    its performance depends on data quality and proper training.</p>
+    
+
+</body>
+</html>
