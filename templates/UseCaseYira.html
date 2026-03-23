@@ -1,16 +1,13 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine Learning - Image Recognition</title>
+    <title>Machine Learning</title>
 
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            line-height: 1.6;
-            background-color: #f4f4f4;
+            background-color: rgba(255, 235, 205, 0.325);
         }
 
         h1 {
@@ -25,99 +22,67 @@
         h3 {
             color: #6f3003;
         }
-
-        .section {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-        }
-
-        img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
-
-        .caption {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
-        }
     </style>
 </head>
 
-<body> 
+<body>
 
-<h1>Machine Learning Use Case: Image Recognition</h1>
+    <h1>Use Cases for Machine Learning</h1>
 
-<div class="section">
-    <h2>1. Introduction</h2>
+    <h2>Image Recognition</h2>
+
+    <img src="https://kinsta.com/es/wp-content/uploads/sites/8/2024/04/object-detection-app-1024x512.jpg" width="400">
+
+    <h3>Image Recognition in Machine Learning</h3>
     <p>
         Image recognition is a technique in artificial intelligence that allows a computer 
         to identify objects within an image, such as distinguishing between a cat and a dog. 
-        Instead of “seeing” like a human, the system analyzes pixel values to detect patterns.
+        Instead of “seeing” like a human, the system analyzes the numerical values of pixels 
+        to detect patterns.
     </p>
 
-    <img src="{{ url_for('static', filename='Image Recognition in Machine Learning.png') }}">
-    <div class="caption">Example of image recognition in machine learning</div>
-</div>
-
-<div class="section">
-    <h2>2. How It Works</h2>
-    <p>The basic process of image recognition includes:</p>
+    <h3>How does it work?</h3>
+    <p>The basic process is:</p>
 
     <ol>
-        <li><strong>Data:</strong> Large datasets of labeled images are used.</li>
-        <li><strong>Preprocessing:</strong> Images are resized and normalized.</li>
-        <li><strong>Training:</strong> Models like CNN learn patterns.</li>
-        <li><strong>Prediction:</strong> The model classifies new images.</li>
+        <li>Data: Many labeled images are used (e.g., “cat” or “dog”).</li>
+        <li>Preprocessing: Images are resized and formatted.</li>
+        <li>Training: A model, usually a Convolutional Neural Network (CNN), learns patterns.</li>
+        <li>Prediction: The model calculates probabilities and decides which object appears in the image.</li>
     </ol>
-</div>
 
-<div class="section">
-    <h2>3. Learning Process</h2>
+    <h3>How does it learn?</h3>
 
-    <img src="{{ url_for('static', filename='Images2.jpg') }}">
-    <div class="caption">Training process of a neural network</div>
+    <img src="https://visionplatform.ai/wp-content/uploads/2024/01/object-detection.png" width="400">
 
     <p>
-        The model compares predictions with real results, calculates the error, 
-        and adjusts its parameters repeatedly until achieving good accuracy.
+        The model compares its predictions with the correct answers, calculates the error, 
+        and adjusts its parameters to improve. This process is repeated many times until 
+        good accuracy is achieved.
     </p>
-</div>
 
-<div class="section">
-    <h2>4. Applications</h2>
+    <h3>Applications</h3>
     <ul>
         <li>Medical diagnosis</li>
         <li>Facial recognition</li>
         <li>Autonomous vehicles</li>
-        <li>Quality control in industries</li>
+        <li>Quality control</li>
     </ul>
-</div>
 
-<div class="section">
-    <h2>5. Limitations</h2>
+    <h3>Limitations</h3>
     <ul>
-        <li>Requires large datasets</li>
-        <li>Can introduce bias</li>
-        <li>Lack of interpretability</li>
-        <li>Sensitivity to small changes</li>
+        <li>Requires large amounts of data</li>
+        <li>Can have biases</li>
+        <li>Often lacks explainability</li>
+        <li>Can fail with small changes in the image</li>
     </ul>
-</div>
 
-<div class="section">
-    <h2>6. Conclusion</h2>
+    <h3>Conclusion</h3>
     <p>
-        Image recognition identifies objects by analyzing visual patterns. 
-        It is a powerful tool, but its effectiveness depends heavily on data quality 
-        and proper model training.
+        Image recognition identifies objects by analyzing visual data patterns. 
+        It is a powerful tool, but its performance depends on data quality 
+        and proper training.
     </p>
-</div>
 
 </body>
 </html>
