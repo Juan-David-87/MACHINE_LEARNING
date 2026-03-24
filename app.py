@@ -1,3 +1,4 @@
+
 import subprocess
 import sys
 
@@ -41,3 +42,4 @@ def logisticRegression():
             result = f"Error: {str(e)}"
 
     return render_template('LogisticRegression.html', result=result)
+
