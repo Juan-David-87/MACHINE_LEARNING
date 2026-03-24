@@ -2,121 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Machine Learning Use Case: Recommendation Systems</title>
+    <title>Machine Learning Use Case</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
-            line-height: 1.6;
             background-color: #f4f4f4;
         }
-        h1, h2 {
-            color: #333;
-        }
-        .section {
+        .container {
             background: white;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 25px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
         }
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+        p {
+            line-height: 1.6;
+        }
         img {
             width: 100%;
-            max-height: 400px;
+            max-height: 350px;
             object-fit: cover;
             border-radius: 8px;
-            margin-top: 15px;
-        }
-        .caption {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-<h1>Machine Learning Use Case: Recommendation Systems</h1>
+<div class="container">
 
-<div class="section">
-    <h2>1. Introduction</h2>
+    <!-- TITLE -->
+    <h1>Recommendation System in Streaming Platforms</h1>
+
+    <img src="https://cdn.dribbble.com/userupload/17772003/file/original-827f220fba91a64cce1b5c26eafedcee.png?resize=400x0" alt="Streaming platform">
+
+    <h2>Description of the Problem</h2>
     <p>
-        Recommendation systems are one of the most widely used applications of machine learning.
-        Platforms like Netflix, Spotify, and YouTube use them to suggest content that matches user preferences.
+        Users face an overwhelming amount of digital content such as movies, music, and videos.
+        Without personalized guidance, it becomes difficult to find relevant content, leading to
+        poor user experience and reduced engagement on platforms.
     </p>
 
-    <img src="https://cdn.dribbble.com/userupload/17772003/file/original-827f220fba91a64cce1b5c26eafedcee.png?resize=400x0" alt="Streaming platform interface">
-    <div class="caption">Example of a streaming platform interface with personalized content</div>
-</div>
-
-<div class="section">
-    <h2>2. The Problem</h2>
+    <h2>Type of Machine Learning</h2>
     <p>
-        Users are exposed to an overwhelming amount of content. Without guidance, it becomes difficult
-        to find relevant movies, music, or videos. This leads to poor user experience and reduced engagement.
-    </p>
-</div>
-
-<div class="section">
-    <h2>3. How Machine Learning Solves It</h2>
-    <p>
-        Machine learning algorithms analyze user behavior such as watch history, likes, search queries,
-        and time spent on content. Based on this data, the system predicts what the user might enjoy next.
+        This use case primarily involves supervised and unsupervised learning techniques.
+        Collaborative filtering and content-based filtering are commonly used approaches
+        to identify patterns in user behavior and preferences.
     </p>
 
+    <img src="https://miro.medium.com/v2/resize:fit:1400/1*6gDIv9mWyc8vkdGerBKiXw.jpeg" alt="ML process">
+
+    <h2>Input Data</h2>
+    <p>
+        The system collects and processes various types of user data, including:
+    </p>
     <ul>
-        <li>Tracks user activity</li>
-        <li>Finds patterns in preferences</li>
-        <li>Compares with similar users</li>
-        <li>Generates personalized recommendations</li>
+        <li>Watch history</li>
+        <li>Search queries</li>
+        <li>Likes and ratings</li>
+        <li>Time spent on content</li>
+        <li>User interaction patterns</li>
     </ul>
 
-    <img src="https://miro.medium.com/v2/resize:fit:1400/1*6gDIv9mWyc8vkdGerBKiXw.jpeg" alt="Recommendation system diagram">
-    <div class="caption">General architecture of a recommendation system</div>
-</div>
-
-<div class="section">
-    <h2>4. Types of Recommendation Systems</h2>
-    <p>There are different approaches used in recommendation systems:</p>
-
-    <ul>
-        <li><strong>Content-Based Filtering:</strong> Recommends items similar to what the user liked before.</li>
-        <li><strong>Collaborative Filtering:</strong> Recommends items liked by similar users.</li>
-        <li><strong>Hybrid Systems:</strong> Combines both methods for better accuracy.</li>
-    </ul>
-
-    <img src="https://www.researchgate.net/publication/376715505/figure/fig1/AS:11431281213817436@1703190264210/Collaborative-filtering-vs-content-based-approach.jpg" alt="Filtering comparison">
-    <div class="caption">Comparison between content-based and collaborative filtering</div>
-</div>
-
-<div class="section">
-    <h2>5. Real-World Example</h2>
+    <h2>Expected Output</h2>
     <p>
-        When you watch a movie on a streaming platform, the system immediately suggests similar content.
-        For example, if you watch action movies frequently, the platform will recommend more action-based content.
+        The system generates personalized recommendations, suggesting movies, songs,
+        or videos that align with the user’s preferences and behavior patterns.
     </p>
 
-    <img src="https://somoswoko.com/wp-content/uploads/2024/12/personalizacion-spotify-1-1024x789.jpg" alt="Spotify recommendation example">
-    <div class="caption">Personalized recommendations in a music streaming platform</div>
-</div>
+    <img src="https://www.researchgate.net/publication/376715505/figure/fig1/AS:11431281213817436@1703190264210/Collaborative-filtering-vs-content-based-approach.jpg" alt="Filtering types">
 
-<div class="section">
-    <h2>6. Benefits</h2>
-    <ul>
-        <li>Improves user experience</li>
-        <li>Increases engagement</li>
-        <li>Helps users discover new content</li>
-        <li>Boosts platform retention</li>
-    </ul>
-</div>
-
-<div class="section">
-    <h2>7. Conclusion</h2>
+    <h2>Real-World Relevance</h2>
     <p>
-        Recommendation systems are a powerful application of machine learning that transform how users interact
-        with digital platforms. By analyzing behavior and predicting preferences, they create a more personalized
-        and efficient experience.
+        Recommendation systems are widely used in platforms like Netflix, Spotify, and YouTube.
+        They improve user satisfaction, increase engagement, and help businesses retain users
+        by delivering personalized content experiences.
     </p>
+
+    <img src="https://somoswoko.com/wp-content/uploads/2024/12/personalizacion-spotify-1-1024x789.jpg" alt="Spotify recommendations">
+
 </div>
 
 </body>
