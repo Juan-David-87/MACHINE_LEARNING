@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MACHINE LEARNING</title>
+    <title>Machine Learning</title>
 
     <style>
         body {
@@ -29,73 +29,60 @@
 
     <h1>Use Cases for Machine Learning</h1>
 
+    <h2>Image Recognition</h2>
 
-   <h2>Image Recognition System for Object Detection</h2>
     <img src="https://kinsta.com/es/wp-content/uploads/sites/8/2024/04/object-detection-app-1024x512.jpg" width="400">
 
-    <h3>Problem Description</h3>
+    <h3>Image Recognition in Machine Learning</h3>
     <p>
-        In today's digital world, organizations generate massive amounts of visual data through cameras, 
-        sensors, and mobile devices. However, manually analyzing this data is inefficient, time-consuming, 
-        and highly dependent on human expertise. In fields such as healthcare, professionals must examine 
-        medical images like X-rays or MRIs to detect diseases, which can lead to delays and variability in 
-        diagnosis. In manufacturing, identifying defects in products through human inspection can result in 
-        inconsistencies and increased operational costs. These challenges create the need for automated systems 
-        capable of analyzing images quickly, consistently, and at scale.
+        Image recognition is a technique in artificial intelligence that allows a computer 
+        to identify objects within an image, such as distinguishing between a cat and a dog. 
+        Instead of “seeing” like a human, the system analyzes the numerical values of pixels 
+        to detect patterns.
     </p>
 
-    <h3>Type of Machine Learning</h3>
-    <img src="https://inesdi-cdn.s3.eu-west-3.amazonaws.com/inesdi-prod/2022-10/MicrosoftTeams-image%20%2810%29.png" width="400">
+    <h3>How does it work?</h3>
+    <p>The basic process is:</p>
+
+    <ol>
+        <li>Data: Many labeled images are used (e.g., “cat” or “dog”).</li>
+        <li>Preprocessing: Images are resized and formatted.</li>
+        <li>Training: A model, usually a Convolutional Neural Network (CNN), learns patterns.</li>
+        <li>Prediction: The model calculates probabilities and decides which object appears in the image.</li>
+    </ol>
+
+    <h3>How does it learn?</h3>
+
+    <img src="https://visionplatform.ai/wp-content/uploads/2024/01/object-detection.png" width="400">
 
     <p>
-        This use case is based on Supervised Learning, where the model is trained using labeled datasets. 
-        The most commonly used approach is Convolutional Neural Networks (CNN), which are specifically designed 
-        to process and analyze visual data by identifying spatial patterns such as edges, shapes, and textures.
+        The model compares its predictions with the correct answers, calculates the error, 
+        and adjusts its parameters to improve. This process is repeated many times until 
+        good accuracy is achieved.
     </p>
 
-    <h3>Input Data</h3>
-    <img src="https://es.mathworks.com/discovery/image-recognition/_jcr_content/mainParsys/band_1231704498_copy/mainParsys/lockedsubnav/mainParsys/columns_2068562688/4f6bd80f-afb9-42e0-b0c7-be067b65ef53/image_copy.adapt.full.medium.png/1767867917952.png" width="400">
-
+    <h3>Applications</h3>
     <ul>
-        <li>Large-scale datasets of labeled images, where each image is carefully annotated with one or more categories 
-        or objects (for example: “cat”, “dog”, “tumor”, or “defective product”). The quality, diversity, and balance 
-        of these datasets are critical, as biased or insufficient data can significantly affect the model’s performance 
-        and generalization capability.</li>
-        <li>Raw pixel values that numerically represent the image. These values are typically organized in matrices 
-        (height × width × color channels), allowing the model to process visual information such as colors, edges, 
-        and textures. During training, the model learns hierarchical features from simple patterns (edges) to complex 
-        structures (objects).</li>
-        <li>Preprocessed data, including normalized pixel values, resized images, and augmented samples (rotations, flips, 
-        brightness adjustments). These preprocessing techniques help improve model robustness and reduce overfitting.</li>
-        <li>Optional metadata such as image resolution, capture conditions (lighting, angle), timestamp, or source device. 
-        In some applications, this additional information can enhance model accuracy or provide context for better predictions.</li>
+        <li>Medical diagnosis</li>
+        <li>Facial recognition</li>
+        <li>Autonomous vehicles</li>
+        <li>Quality control</li>
     </ul>
 
-    <h3>Expected Output</h3>
+    <h3>Limitations</h3>
     <ul>
-        <li>Accurate classification of the image into one or multiple predefined categories, depending on whether the task 
-        is single-label or multi-label classification. The model assigns the most probable class based on learned features.</li>
-        <li>Detection and localization of objects within the image using techniques such as bounding boxes or image segmentation, 
-        enabling the system not only to identify what is present but also where it is located.</li>
-        <li>A probability score or confidence level associated with each prediction, which reflects the certainty of the model. 
-        These probabilities are useful for decision-making processes, especially in critical applications like healthcare.</li>
-        <li>In more advanced systems, additional outputs such as heatmaps or attention maps can be generated to highlight 
-        the regions of the image that influenced the model’s decision, improving interpretability.</li>
+        <li>Requires large amounts of data</li>
+        <li>Can have biases</li>
+        <li>Often lacks explainability</li>
+        <li>Can fail with small changes in the image</li>
     </ul>
 
-    <h3>Real-World Relevance</h3>
-    <ul>
-        <li>In healthcare, image recognition systems assist medical professionals by detecting anomalies such as tumors, 
-        fractures, or infections in medical images (X-rays, MRIs, CT scans). This can significantly reduce diagnosis time 
-        and improve accuracy, although human validation remains essential.</li>
-        <li>In security and surveillance systems, it enables facial recognition, behavior analysis, and anomaly detection, 
-        helping identify individuals or suspicious activities in real time.</li>
-        <li>In autonomous vehicles, image recognition plays a critical role by continuously analyzing the environment to 
-        detect pedestrians, traffic signs, road lanes, and obstacles, allowing safe and efficient navigation.</li>
-        <li>In industrial and manufacturing environments, it automates quality control processes by identifying defective 
-        products on production lines, reducing human error, operational costs, and material waste.</li>
-        <li>In retail and e-commerce, it enhances user experience through visual search, allowing customers to find products 
-        using images instead of text, and improving recommendation systems.</li>
-    </ul>
+    <h3>Conclusion</h3>
+    <p>
+        Image recognition identifies objects by analyzing visual data patterns. 
+        It is a powerful tool, but its performance depends on data quality 
+        and proper training.
+    </p>
+
 </body>
 </html>
