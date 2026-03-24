@@ -1,27 +1,45 @@
-from flask import Flask, render_template
+
+import subprocess
+import sys
+
+from flask import Flask, render_template, request
+import LinearRegression
+import LogisticRegression 
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Machine Learning Use Cases in Flask"
+    return "Hello Flask"
 
-@app.route("/Menu")
-def firstPage(): 
-    return render_template("Menu.html") # este recarga el home toca hacer que este en home y vaya al menu 
+@app.route('/FirstPage/<name>')
+def firstPage(name):
+    return render_template('UseCaseYira.html', name=name)
 
-@app.route("/FirstCase")
-def secondPage(): 
-    return render_template("UseCaseJuanda.html")
+@app.route("/LinearRegression/", methods=['GET', 'POST'])
+def calculateGrade(): 
+    calculateGrade = None
+    if request.method == 'POST':
+        hours = float(request.form['hours'])
+        calculateGrade = LinearRegression.calculateGrade(hours)
+    return render_template('linearRegressionGrade.html', result=calculateGrade)
 
-@app.route("/SecondCase")
-def thirdPage(): 
-    return render_template("UseCaseElkin.html")
+@app.route("/LogisticRegression/", methods=['GET', 'POST'])
+def logisticRegression(): 
+    result = None
 
-@app.route("/ThirdCase")
-def fourthPage(): 
-    return render_template("UseCaseYira.html")
+    if request.method == 'POST':
+        try:
+            proceso = subprocess.run(
+                [sys.executable, "LogisticRegression.py"],
+                capture_output=True,
+                text=True
+            )
 
-@app.route("/FourthCase")
-def fifthPage(): 
-    return render_template("UseCaseJuan.html")
+            result = proceso.stdout
+
+        except Exception as e:
+            result = f"Error: {str(e)}"
+
+    return render_template('LogisticRegression.html', result=result)
+
