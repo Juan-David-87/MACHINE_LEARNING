@@ -4,11 +4,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Machine Learning Use Cases in Flask"
+    return render_template("Home.html")
 
 @app.route("/Menu")
 def firstPage(): 
-    return render_template("Menu.html") # este recarga el home toca hacer que este en home y vaya al menu 
+    return render_template("Menu.html")
 
 @app.route("/FirstCase")
 def secondPage(): 
