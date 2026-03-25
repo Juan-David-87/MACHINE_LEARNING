@@ -26,6 +26,14 @@ def fourthPage():
 def fifthPage(): 
     return render_template("UseCaseJuan.html")
 
+@app.route("/BasicConcepts")
+def basicConcepts():
+    return render_template("BasicConcepts.html")
+
+@app.route("/Application")
+def application():
+    return render_template("Application.html")
+
 @app.route("/LinearRegression", methods=["GET", "POST"])
 def index():
     result = None
