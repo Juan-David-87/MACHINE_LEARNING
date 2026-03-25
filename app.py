@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request
+from LinearRegressionHappiness import predictHappiness
 app = Flask(__name__)
 
 @app.route('/')
@@ -25,3 +25,13 @@ def fourthPage():
 @app.route("/FourthCase")
 def fifthPage(): 
     return render_template("UseCaseJuan.html")
+
+@app.route("/LinearRegression", methods=["GET", "POST"])
+def index():
+    result = None
+
+    if request.method == "POST":
+        gdp = float(request.form["gdp"])
+        result = predictHappiness(gdp)
+
+    return render_template("HappinessLinearRegression.html", result=result)
