@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from LinearRegressionHappiness import predictHappiness
+from LinearRegressionHappiness import predictHappiness, generatePlot
 app = Flask(__name__)
 
 @app.route('/')
@@ -34,12 +34,13 @@ def basicConcepts():
 def application():
     return render_template("Application.html")
 
-@app.route("/LinearRegression", methods=["GET", "POST"])
+@app.route("/HappinessLinearRegression", methods=["GET", "POST"])
 def index():
     result = None
+    plot = generatePlot()  # generate a graph from linear regression
 
     if request.method == "POST":
         gdp = float(request.form["gdp"])
         result = predictHappiness(gdp)
 
-    return render_template("HappinessLinearRegression.html", result=result)
+    return render_template("HappinessLinearRegression.html", result=result, plot=plot)
