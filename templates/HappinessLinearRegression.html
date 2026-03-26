@@ -15,6 +15,10 @@
     {% if result is not none %}
     <h2>Estimated Happiness Score: {{result}}</h2>
     {% endif %}
+    {% if plot %}
+    <h3>Regression Graph:</h3>
+    <img src="data:image/png;base64,{{ plot }}" class="img-fluid"/>
+    {% endif %}
 </body>
 </html>
 <a href="/Menu" class="btn btn-secondary mt-4">Back to Menu</a>
