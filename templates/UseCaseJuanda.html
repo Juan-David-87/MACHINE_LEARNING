@@ -1,93 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Use Case 1</title>
-  <style>
-    body {
-        background-color: #445f9e;
-        font-family: Arial, sans-serif;
-    }
+{% extends "base.html" %}
 
-    h1 { color: #38BDF8; }
-    h2 { color: #60A5FA; }
-    h3 { color: #93C5FD; }
-    strong { color: #FACC15; }
-</style>
-</head>
-<body>
-<h1> First Page</h1>
-<p>Machine Learning Class</p>
-{%if name%}
-<p> Hello</p>
-{%endif%}
+{% block content %}
 
-        <h1>Machine Learning Use Case</h1>
+<h1 class="text-center mb-5"> Product Recommendation System (E-commerce)</h1>
 
-    <h2>Product Recommendation System in an E-commerce Environment</h2>
+<div class="row g-4">
 
-    <h3>Business Problem Statement</h3>
-    <p>
-        An e-commerce company similar to Amazon or Mercado Libre faces several challenges due to the expansion 
-        of its product catalog and changing customer behavior.
-    </p>
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h3>Business Problem Statement</h3>
+            <p>
+                An e-commerce company similar to Amazon or Mercado Libre faces several challenges due to the expansion 
+                of its product catalog and changing customer behavior.
+            </p>
 
-    <p><strong>Current Problems:</strong></p>
-    <ul>
-        <li>Thousands of products available in the catalog.</li>
-        <li>Customers struggle to quickly find what they want.</li>
-        <li>Low conversion rate.</li>
-        <li>High cart abandonment.</li>
-        <li>Low customer retention.</li>
-        <li>Generic recommendations such as “best-selling products”.</li>
-    </ul>
+            <h4>Current Problems:</h4>
+            <ul>
+                <li>Thousands of products available in the catalog.</li>
+                <li>Customers struggle to quickly find what they want.</li>
+                <li>Low conversion rate.</li>
+                <li>High cart abandonment.</li>
+                <li>Low customer retention.</li>
+                <li>Generic recommendations such as “best-selling products”.</li>
+            </ul>
+        </div>
+    </div>
 
-    <p><strong>Negative Business Impact:</strong></p>
-    <ul>
-        <li>Lower sales revenue.</li>
-        <li>Reduced average order value.</li>
-        <li>Loss of customers to competitors.</li>
-        <li>Poorly personalized user experience.</li>
-    </ul>
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h4>Negative Business Impact:</h4>
+            <ul>
+                <li>Lower sales revenue.</li>
+                <li>Reduced average order value.</li>
+                <li>Loss of customers to competitors.</li>
+                <li>Poorly personalized user experience.</li>
+            </ul>
 
-    <h3>Relationship with Machine Learning</h3>
-    <p>
-        This problem can be addressed by implementing a Machine Learning-based Recommendation System. 
-        The system analyzes large volumes of user behavior data and identifies hidden patterns. 
-        Based on these patterns, the model predicts which products are most likely to interest each individual customer.
-    </p>
+            <h3 class="mt-3">Relationship with Machine Learning</h3>
+            <p>
+                This problem can be addressed by implementing a Machine Learning-based Recommendation System. 
+                The system analyzes large volumes of user behavior data and identifies hidden patterns. 
+                Based on these patterns, the model predicts which products are most likely to interest each individual customer.
+            </p>
 
-    <ol>
-        <li>Detects patterns not visible through traditional analysis.</li>
-        <li>Provides personalized recommendations at an individual level.</li>
-        <li>Continuously improves as new data becomes available.</li>
-    </ol>
+            <ol>
+                <li>Detects patterns not visible through traditional analysis.</li>
+                <li>Provides personalized recommendations at an individual level.</li>
+                <li>Continuously improves as new data becomes available.</li>
+            </ol>
+        </div>
+    </div>
 
-    <h3>How Does It Work in Practice?</h3>
-    <p>
-        The system collects data about user behavior, such as viewed products, purchases, time spent on pages, 
-        and visited categories. The model analyzes relationships between users and products to generate 
-        personalized predictions. When the customer revisits the platform, the system displays real-time 
-        recommendations based on their previous activity and similar user behaviors, increasing the probability of purchase.
-    </p>
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h3>How Does It Work in Practice?</h3>
+            <p>
+                The system collects data about user behavior, such as viewed products, purchases, time spent on pages, 
+                and visited categories. The model analyzes relationships between users and products to generate 
+                personalized predictions. When the customer revisits the platform, the system displays real-time 
+                recommendations based on their previous activity and similar user behaviors, increasing the probability of purchase.
+            </p>
+        </div>
+    </div>
 
-    <h3>What Does the Model Learn?</h3>
-    <p>
-        The model learns user behavior patterns and relationships between products. It identifies individual 
-        preferences such as favorite categories, preferred price ranges, and brands. It also detects products 
-        frequently purchased together and factors influencing buying decisions. Over time, it anticipates user interests 
-        even before a specific search is made.
-    </p>
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h3>What Does the Model Learn?</h3>
+            <p>
+                The model learns user behavior patterns and relationships between products. It identifies individual 
+                preferences such as favorite categories, preferred price ranges, and brands. It also detects products 
+                frequently purchased together and factors influencing buying decisions. Over time, it anticipates user interests 
+                even before a specific search is made.
+            </p>
+        </div>
+    </div>
 
-    <h3>How Does It Improve the Company?</h3>
-    <p>
-        A recommendation system increases conversion rates and average order value by presenting relevant products 
-        to each customer. It enhances user experience by simplifying navigation and reducing search time, 
-        leading to higher satisfaction and loyalty. As a result, the company increases revenue, strengthens 
-        customer retention, and gains a competitive advantage.
-    </p>
-</body>
-</html>
-<a href="/Menu" class="btn btn-secondary mt-4">Back to Menu</a>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <div class="col-12">
+        <div class="card-custom text-center">
+            <h3>How Does It Improve the Company?</h3>
+            <p>
+                A recommendation system increases conversion rates and average order value by presenting relevant products 
+                to each customer. It enhances user experience by simplifying navigation and reducing search time, 
+                leading to higher satisfaction and loyalty. As a result, the company increases revenue, strengthens 
+                customer retention, and gains a competitive advantage.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
