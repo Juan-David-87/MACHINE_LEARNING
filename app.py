@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from LinearRegressionHappiness import predictHappiness, generatePlot
+from LinearRegressionOil import predictHappiness, generatePlot
 app = Flask(__name__)
 
 @app.route('/')
