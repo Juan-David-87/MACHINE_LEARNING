@@ -34,7 +34,7 @@ def basicConcepts():
 def application():
     return render_template("Application.html")
 
-@app.route("/HappinessLinearRegression", methods=["GET", "POST"])
+@app.route("/OilLinearRegression", methods=["GET", "POST"])
 def index():
     result = None
     plot = None
@@ -50,4 +50,4 @@ def index():
         #graphic base
         plot = generatePlot()
 
-    return render_template("HappinessLinearRegression.html", result=result, plot=plot)
+    return render_template("LinearRegressionOil.html", result=result, plot=plot)

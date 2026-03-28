@@ -4,53 +4,48 @@ import io
 import base64
 from sklearn.linear_model import LinearRegression
 
-df = pd.read_csv("world_happiness_report.csv")
+df = pd.read_csv("US_Crude_Oil_Imports.csv")
 
-#removes unnecessary columns for predictio
-df = df.drop(columns=["Unnamed: 0"])
-
-# removes empty rows
+#  removes empty rows
 df = df.dropna()
 
-#automatically fills missing rows without deleting data
-#df = df.fillna(df.mean())
+# variables
+x = df[["year"]]   # independent variable
+y = df[["quantity"]]  #dependent variable
 
-x = df[["Economy (GDP per Capita)"]]   #independent variable
-y = df[["Happiness Score"]]  #dependent variable
 
 model = LinearRegression()
-model.fit(x , y) 
+model.fit(x, y)
 
-def predictHappiness(gdp):
-    result = model.predict([[gdp]])
+def predictOil(year):
+    result = model.predict([[year]])
     return float(result[0][0])
-def generatePlot(gdp_value=None):
+
+def generatePlot(year_value=None):
     fig, ax = plt.subplots()
 
-    df_sorted = df.sort_values(by="Economy (GDP per Capita)")
+    df_sorted = df.sort_values(by="year")
 
-    X = df_sorted[["Economy (GDP per Capita)"]]
-    Y = df_sorted["Happiness Score"]
+    X = df_sorted[["year"]]
+    Y = df_sorted["quantity"]
 
-    ax.scatter(X, Y, alpha=0.5)
+    #real coordinates for points
+    ax.scatter(X.values.flatten(), Y.values.flatten(), alpha=0.5)
 
     y_line = model.predict(X)
-    ax.plot(X, y_line)
+    ax.plot(X.values.flatten(), y_line.flatten())
 
-    if gdp_value is not None:
-        import pandas as pd
-
-        input_df = pd.DataFrame([[gdp_value]], columns=["Economy (GDP per Capita)"])
+    if year_value is not None:
+        input_df = pd.DataFrame([[year_value]], columns=["year"])
         predicted = model.predict(input_df)
-
         predicted_value = predicted[0][0]
 
-        ax.scatter(gdp_value, predicted_value, color='red', s=100)
-        ax.text(gdp_value, predicted_value, f"({gdp_value}, {round(predicted_value,2)})")
+        ax.scatter(year_value, predicted_value, color='red', s=100)
+        ax.text(year_value, predicted_value, f"({year_value}, {round(predicted_value,2)})")
 
-    ax.set_xlabel("GDP per Capita")
-    ax.set_ylabel("Happiness Score")
-    ax.set_title("Linear Regression with Prediction")
+    ax.set_xlabel("Year")
+    ax.set_ylabel("Oil Quantity")
+    ax.set_title("Linear Regression - Oil Imports")
 
     img = io.BytesIO()
     fig.savefig(img, format='png')
