@@ -2,21 +2,19 @@
 
 {% block content %}
 
-<h1 class="text-center mb-5">Happiness Prediction (Linear Regression)</h1>
+<h1 class="text-center mb-5">Oil Imports Prediction, Linear Regression</h1>
 
 <div class="row justify-content-center">
 
     <div class="col-md-6">
         <div class="card-custom text-center">
 
-            <h3>Enter GDP per Capita
-                (values 0 to 1)
-            </h3>
+            <h3>Enter Year</h3>
 
             <form method="post">
                 <div class="mb-3">
-                    <input type="number" step="any" name="gdp" 
-                           class="form-control" placeholder="e.g. 1.5" required>
+                    <input type="number" step="any" name="year" 
+                           class="form-control" placeholder="e.g. 2020" required>
                 </div>
 
                 <button type="submit" class="btn btn-success">
@@ -26,7 +24,7 @@
 
             {% if result is not none %}
                 <div class="mt-4">
-                    <h4>Estimated Happiness Score:</h4>
+                    <h4>Estimated Oil Imports:</h4>
                     <h2 class="text-success">{{ result }}</h2>
                 </div>
             {% endif %}
@@ -35,9 +33,11 @@
                 <div class="mt-4">
                     <h4>Regression Graph</h4>
                     <img src="data:image/png;base64,{{ plot }}" 
-                         class="img-fluid mt-3" alt="Regression Graph"/>
+                         class="img-fluid mt-3"/>
                 </div>
             {% endif %}
+
+            <a href="/Menu" class="btn btn-secondary mt-4">Back to Menu</a>
 
         </div>
     </div>

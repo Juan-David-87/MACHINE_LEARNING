@@ -6,42 +6,37 @@ from sklearn.linear_model import LinearRegression
 
 df = pd.read_csv("US_Crude_Oil_Imports.csv")
 
-#  removes empty rows
-df = df.dropna()
-
-# variables
-x = df[["year"]]   # independent variable
-y = df[["quantity"]]  #dependent variable
-
+x = df[["year"]] #independent Variable
+y = df["quantity"] #dependent Variable
 
 model = LinearRegression()
 model.fit(x, y)
 
 def predictOil(year):
-    result = model.predict([[year]])
-    return float(result[0][0])
+    input_df = pd.DataFrame([[year]], columns=["year"])
+    result = model.predict(input_df)
+    return float(result[0])
 
 def generatePlot(year_value=None):
     fig, ax = plt.subplots()
 
     df_sorted = df.sort_values(by="year")
 
-    X = df_sorted[["year"]]
-    Y = df_sorted["quantity"]
+    X = df_sorted["year"].values 
+    Y = df_sorted["quantity"].values
 
-    #real coordinates for points
-    ax.scatter(X.values.flatten(), Y.values.flatten(), alpha=0.5)
+    ax.scatter(X, Y, alpha=0.5)
 
-    y_line = model.predict(X)
-    ax.plot(X.values.flatten(), y_line.flatten())
+    X_model = df_sorted[["year"]]
+    y_line = model.predict(X_model).flatten()
+    ax.plot(X, y_line, color='red')
 
     if year_value is not None:
         input_df = pd.DataFrame([[year_value]], columns=["year"])
-        predicted = model.predict(input_df)
-        predicted_value = predicted[0][0]
+        predicted = model.predict(input_df).flatten()[0]
 
-        ax.scatter(year_value, predicted_value, color='red', s=100)
-        ax.text(year_value, predicted_value, f"({year_value}, {round(predicted_value,2)})")
+        ax.scatter(year_value, predicted, color='green', s=100)
+        ax.text(year_value, predicted, f"({year_value}, {round(predicted,2)})")
 
     ax.set_xlabel("Year")
     ax.set_ylabel("Oil Quantity")

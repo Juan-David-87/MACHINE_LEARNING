@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from LinearRegressionOil import predictHappiness, generatePlot
+from LinearRegressionOil import predictOil, generatePlot as generatePlotLinear
 app = Flask(__name__)
 
 @app.route('/')
@@ -35,19 +35,19 @@ def application():
     return render_template("Application.html")
 
 @app.route("/OilLinearRegression", methods=["GET", "POST"])
-def index():
+@app.route("/OilLinearRegression", methods=["GET", "POST"])
+def LinearRegression():
     result = None
     plot = None
 
     if request.method == "POST":
-        gdp = float(request.form["gdp"])
-        result = predictHappiness(gdp)
+        year = int(request.form["year"])
+        result = predictOil(year)
 
-        # now de graphic depent to valour
-        plot = generatePlot(gdp)
+        plot = generatePlotLinear(year)
 
     else:
-        #graphic base
-        plot = generatePlot()
+        
+        plot = generatePlotLinear()
 
-    return render_template("LinearRegressionOil.html", result=result, plot=plot)
+    return render_template("OilLinearRegression.html", result=result, plot=plot)
