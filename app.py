@@ -37,10 +37,17 @@ def application():
 @app.route("/HappinessLinearRegression", methods=["GET", "POST"])
 def index():
     result = None
-    plot = generatePlot()  # generate a graph from linear regression
+    plot = None
 
     if request.method == "POST":
         gdp = float(request.form["gdp"])
         result = predictHappiness(gdp)
+
+        # 👇 ahora la gráfica depende del valor
+        plot = generatePlot(gdp)
+
+    else:
+        # gráfica base (sin punto)
+        plot = generatePlot()
 
     return render_template("HappinessLinearRegression.html", result=result, plot=plot)

@@ -24,28 +24,37 @@ model.fit(x , y)
 def predictHappiness(gdp):
     result = model.predict([[gdp]])
     return float(result[0][0])
-def generatePlot():
-    plt.figure()
+def generatePlot(gdp_value=None):
+    fig, ax = plt.subplots()
 
-    #real variables
-    plt.scatter(x, y)
+    df_sorted = df.sort_values(by="Economy (GDP per Capita)")
 
-    #linearregression
-    y_pred = model.predict(x)
-    plt.plot(x, y_pred)
+    X = df_sorted[["Economy (GDP per Capita)"]]
+    Y = df_sorted["Happiness Score"]
 
-    plt.xlabel("GDP per Capita")
-    plt.ylabel("Happiness Score")
-    plt.title("Linear Regression")
+    ax.scatter(X, Y, alpha=0.5)
 
-    #save memory
+    y_line = model.predict(X)
+    ax.plot(X, y_line)
+
+    if gdp_value is not None:
+        import pandas as pd
+
+        input_df = pd.DataFrame([[gdp_value]], columns=["Economy (GDP per Capita)"])
+        predicted = model.predict(input_df)
+
+        predicted_value = predicted[0][0]
+
+        ax.scatter(gdp_value, predicted_value, color='red', s=100)
+        ax.text(gdp_value, predicted_value, f"({gdp_value}, {round(predicted_value,2)})")
+
+    ax.set_xlabel("GDP per Capita")
+    ax.set_ylabel("Happiness Score")
+    ax.set_title("Linear Regression with Prediction")
+
     img = io.BytesIO()
-    plt.savefig(img, format='png')
+    fig.savefig(img, format='png')
+    plt.close(fig)
+
     img.seek(0)
-
-    # convert to base64
-    plot_url = base64.b64encode(img.getvalue()).decode()
-
-    plt.close()
-
-    return plot_url
+    return base64.b64encode(img.getvalue()).decode()
