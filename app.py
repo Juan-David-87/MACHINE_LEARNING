@@ -43,11 +43,11 @@ def index():
         gdp = float(request.form["gdp"])
         result = predictHappiness(gdp)
 
-        # 👇 ahora la gráfica depende del valor
+        # now de graphic depent to valour
         plot = generatePlot(gdp)
 
     else:
-        # gráfica base (sin punto)
+        #graphic base
         plot = generatePlot()
 
     return render_template("HappinessLinearRegression.html", result=result, plot=plot)
