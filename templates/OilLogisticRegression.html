@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-center mb-5">Oil Imports Classification, Logistic Regression</h1>
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+        <div class="card-custom text-center">
+
+            <h3>Enter Year</h3>
+
+            <form method="post">
+                <div class="mb-3">
+                    <input type="number" step="any" name="year" 
+                           class="form-control" placeholder="e.g. 2020" required>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Predict
+                </button>
+            </form>
+
+            {% if result is not none %}
+                <div class="mt-4">
+                    <h4>Classification Result:</h4>
+                    {% if result == 1 %}
+                        <h2 class="text-warning">HIGH Imports</h2>
+                        <p>The model predicts that for year {{ year_value }}, oil imports will be <strong>ABOVE AVERAGE</strong>.</p>
+                    {% else %}
+                        <h2 class="text-info">LOW Imports</h2>
+                        <p>The model predicts that for year {{ year_value }}, oil imports will be <strong>BELOW AVERAGE</strong>.</p>
+                    {% endif %}
+                    <small class="text-muted">Threshold (average): {{ "%.2f"|format(threshold) }}</small>
+                </div>
+            {% endif %}
+
+            {% if plot %}
+                <div class="mt-4">
+                    <h4>Logistic Regression Curve</h4>
+                    <img src="data:image/png;base64,{{ plot }}" 
+                         class="img-fluid mt-3"/>
+                    <small class="text-muted d-block mt-2">
+                        Red curve: Probability of High Imports<br>
+                        Horizontal line: Decision threshold (0.5)<br>
+                        Green point: Prediction for selected year
+                    </small>
+                </div>
+            {% endif %}
+
+            <a href="/Menu" class="btn btn-secondary mt-4">Back to Menu</a>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

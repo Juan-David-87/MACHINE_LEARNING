@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 from LinearRegressionOil import predictOil, generatePlot as generatePlotLinear
+from LogisticRegressionOil import predictOilCategory, generatePlot as generatePlotLogistic, getThreshold
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -35,7 +37,6 @@ def application():
     return render_template("Application.html")
 
 @app.route("/OilLinearRegression", methods=["GET", "POST"])
-@app.route("/OilLinearRegression", methods=["GET", "POST"])
 def LinearRegression():
     result = None
     plot = None
@@ -51,3 +52,18 @@ def LinearRegression():
         plot = generatePlotLinear()
 
     return render_template("OilLinearRegression.html", result=result, plot=plot)
+@app.route("/OilLogisticRegression", methods=["GET", "POST"])
+def oil_logistic():
+    result = None
+    plot = None
+    year_value = None
+    threshold = getThreshold()
+
+    if request.method == "POST":
+        year_value = int(request.form["year"])
+        result = predictOilCategory(year_value)
+        plot = generatePlotLogistic(year_value)
+    else:
+        plot = generatePlotLogistic()
+
+    return render_template("OilLogisticRegression.html", result=result, plot=plot, year_value=year_value, threshold=threshold)
