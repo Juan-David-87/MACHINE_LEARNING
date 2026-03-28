@@ -1,115 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Linear Regression Explanation</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f4f4f4;
-            line-height: 1.6;
-        }
-        .container {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-        }
-        h2 {
-            color: #333;
-            margin-top: 20px;
-        }
-        .image-placeholder {
-            width: 100%;
-            height: 250px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-style: italic;
-            color: #555;
-        }
-    </style>
-</head>
-<body>
+{% extends "base.html" %}
 
-<div class="container">
+{% block content %}
 
-    <h1>Linear Regression in Machine Learning</h1>
+<h1 class="text-center mb-5"> Linear Regression in Machine Learning</h1>
 
-    <h2>What is Linear Regression?</h2>
-    <p>
-        Linear regression is a fundamental machine learning algorithm used to model the relationship
-        between a dependent variable and one or more independent variables. It assumes a linear
-        relationship and aims to predict outcomes based on input data.
-    </p>
+<div class="row g-4">
 
-    <div class="image-placeholder">
-        <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*NvBTo9wVQK7NehL5.png"width="300">
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h3>What is Linear Regression?</h3>
+            <p>
+                Linear regression is a fundamental machine learning algorithm used to model the relationship
+                between a dependent variable and one or more independent variables. It assumes a linear
+                relationship and aims to predict outcomes based on input data.
+            </p>
+            <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/0*NvBTo9wVQK7NehL5.png"
+                 class="img-fluid mt-3">
+        </div>
     </div>
 
-    <h2>Independent and Dependent Variables</h2>
-    <p>
-        In linear regression, the independent variable (X) represents the input or feature used to make predictions,
-        while the dependent variable (Y) represents the output or value being predicted. The goal is to understand
-        how changes in X affect Y.
-    </p>
-
-    <div class="image-placeholder">
-        <img src="https://cdn.ablebits.com/_img-blog/regression/linear-regression-graph-excel.png">
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h3>Independent and Dependent Variables</h3>
+            <p>
+                In linear regression, the independent variable (X) represents the input or feature used to make predictions,
+                while the dependent variable (Y) represents the output or value being predicted.
+            </p>
+            <img src="https://cdn.ablebits.com/_img-blog/regression/linear-regression-graph-excel.png"
+                 class="img-fluid mt-3">
+        </div>
     </div>
 
-    <h2>Training Data</h2>
-    <p>
-        Training data consists of a set of known input-output pairs used to train the model.
-        The algorithm uses this data to learn the relationship between variables and generate predictions
-        for new, unseen data.
-    </p>
-
-    <div class="image-placeholder">
-        <img src="https://r4ds.hadley.nz/data-visualize_files/figure-html/unnamed-chunk-12-1.png">
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h3>Training Data</h3>
+            <p>
+                Training data consists of a set of known input-output pairs used to train the model.
+                The algorithm uses this data to learn the relationship between variables.
+            </p>
+            <img src="https://r4ds.hadley.nz/data-visualize_files/figure-html/unnamed-chunk-12-1.png"
+                 class="img-fluid mt-3">
+        </div>
     </div>
 
-    <h2>Regression Line</h2>
-    <p>
-        The regression line is the best-fitting straight line that represents the relationship between
-        the variables. It minimizes the difference between the predicted values and the actual data points.
-    </p>
-
-    <div class="image-placeholder">
-        <img src="https://i.sstatic.net/PNwFD.png">
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h3>Regression Line</h3>
+            <p>
+                The regression line is the best-fitting straight line that represents the relationship between variables.
+            </p>
+            <img src="https://i.sstatic.net/PNwFD.png"
+                 class="img-fluid mt-3">
+        </div>
     </div>
 
-    <h2>Slope and Intercept</h2>
-    <p>
-        The slope (m) represents the rate of change of the dependent variable with respect to the independent variable.
-        The intercept (b) is the value of the dependent variable when the independent variable is zero.
-        Together, they form the equation of the line: y = mx + b.
-    </p>
-
-    <div class="image-placeholder">
-        <img src="https://www.katesmathlessons.com/uploads/1/6/1/0/1610286/1163738_orig.png">
+    <div class="col-md-6">
+        <div class="card-custom">
+            <h3>Slope and Intercept</h3>
+            <p>
+                The slope (m) represents the rate of change, and the intercept (b) is the value when X is zero.
+                Together they form the equation: y = mx + b.
+            </p>
+            <img src="https://www.katesmathlessons.com/uploads/1/6/1/0/1610286/1163738_orig.png"
+                 class="img-fluid mt-3">
+        </div>
     </div>
 
-    <h2>Application Example</h2>
-    <p>
-        A common example of linear regression is predicting house prices based on features such as size.
-        For instance, as the size of a house increases, the price is expected to increase in a linear pattern.
-    </p>
-
-    <div class="image-placeholder">
-         <img src="https://www.amybergquist.com/blog/wp-content/uploads/2008/10/2008-10-01-home-price-vs-home-size.jpg">
+    <div class="col-12">
+        <div class="card-custom text-center">
+            <h3>Application Example</h3>
+            <p>
+                A common example is predicting house prices based on size.
+                As size increases, price tends to increase linearly.
+            </p>
+            <img src="https://www.amybergquist.com/blog/wp-content/uploads/2008/10/2008-10-01-home-price-vs-home-size.jpg"
+                 class="img-fluid mt-3">
+        </div>
     </div>
 
 </div>
 
-</body>
-</html>
-<a href="/Menu" class="btn btn-secondary mt-4">Back to Menu</a>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}

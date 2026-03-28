@@ -1,25 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happiness Prediction</title>
-</head>
-<body>
-    <h1>Linear Regression: Predict Happiness Score</h1>
-    <form method="post">
-        <label for="gdp">GDP per Capita:</label>
-        <input type="number" step="any" name="gdp" required>
-        <button type="submit">Predict</button>
-    </form>
-    {% if result is not none %}
-    <h2>Estimated Happiness Score: {{result}}</h2>
-    {% endif %}
-    {% if plot %}
-    <h3>Regression Graph:</h3>
-    <img src="data:image/png;base64,{{ plot }}" class="img-fluid"/>
-    {% endif %}
-</body>
-</html>
-<a href="/Menu" class="btn btn-secondary mt-4">Back to Menu</a>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-center mb-5">Happiness Prediction (Linear Regression)</h1>
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+        <div class="card-custom text-center">
+
+            <h3>Enter GDP per Capita</h3>
+
+            <form method="post">
+                <div class="mb-3">
+                    <input type="number" step="any" name="gdp" 
+                           class="form-control" placeholder="e.g. 1.5" required>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Predict
+                </button>
+            </form>
+
+            {% if result is not none %}
+                <div class="mt-4">
+                    <h4>Estimated Happiness Score:</h4>
+                    <h2 class="text-success">{{ result }}</h2>
+                </div>
+            {% endif %}
+
+            {% if plot %}
+                <div class="mt-4">
+                    <h4>Regression Graph</h4>
+                    <img src="data:image/png;base64,{{ plot }}" 
+                         class="img-fluid mt-3" alt="Regression Graph"/>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
