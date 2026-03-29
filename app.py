@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
-from LinearRegressionOil import predictHappiness, generatePlot
+from LinearRegressionOil import predictOil, generatePlot as generatePlotLinear
+from LogisticRegressionOil import predictOilCategory, generatePlot as generatePlotLogistic, getThreshold
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -34,20 +36,34 @@ def basicConcepts():
 def application():
     return render_template("Application.html")
 
-@app.route("/HappinessLinearRegression", methods=["GET", "POST"])
-def index():
+@app.route("/OilLinearRegression", methods=["GET", "POST"])
+def LinearRegression():
     result = None
     plot = None
 
     if request.method == "POST":
-        gdp = float(request.form["gdp"])
-        result = predictHappiness(gdp)
+        year = int(request.form["year"])
+        result = predictOil(year)
 
-        # now de graphic depent to valour
-        plot = generatePlot(gdp)
+        plot = generatePlotLinear(year)
 
     else:
-        #graphic base
-        plot = generatePlot()
+        
+        plot = generatePlotLinear()
 
-    return render_template("HappinessLinearRegression.html", result=result, plot=plot)
+    return render_template("OilLinearRegression.html", result=result, plot=plot)
+@app.route("/OilLogisticRegression", methods=["GET", "POST"])
+def oil_logistic():
+    result = None
+    plot = None
+    year_value = None
+    threshold = getThreshold()
+
+    if request.method == "POST":
+        year_value = int(request.form["year"])
+        result = predictOilCategory(year_value)
+        plot = generatePlotLogistic(year_value)
+    else:
+        plot = generatePlotLogistic()
+
+    return render_template("OilLogisticRegression.html", result=result, plot=plot, year_value=year_value, threshold=threshold)
