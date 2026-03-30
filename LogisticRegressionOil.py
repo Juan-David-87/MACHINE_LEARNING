@@ -25,10 +25,10 @@ def getThreshold():
     return threshold
 
 def predictOilCategory(year):
-    #scale the year on input
     year_scaled = scaler.transform([[year]])
-    result = model.predict(year_scaled)
-    return int(result[0])
+    prob = model.predict_proba(year_scaled)[0][1]
+    category = model.predict(year_scaled)[0]
+    return int(category), float(prob)
 
 def generatePlot(year_value=None):
     fig, ax = plt.subplots(figsize=(10, 6))

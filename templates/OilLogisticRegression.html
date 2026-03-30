@@ -25,6 +25,10 @@
             {% if result is not none %}
                 <div class="mt-4">
                     <h4>Classification Result:</h4>
+                    <p>
+                        Probability of HIGH imports:
+                        <strong>{{ "%.3f"|format(probability) }}</strong>
+                    </p>
                     {% if result == 1 %}
                         <h2 class="text-warning">HIGH Imports</h2>
                         <p>The model predicts that for year {{ year_value }}, oil imports will be <strong>ABOVE AVERAGE</strong>.</p>
@@ -32,7 +36,7 @@
                         <h2 class="text-info">LOW Imports</h2>
                         <p>The model predicts that for year {{ year_value }}, oil imports will be <strong>BELOW AVERAGE</strong>.</p>
                     {% endif %}
-                    <small class="text-muted">Threshold (average): {{ "%.2f"|format(threshold) }}</small>
+                    <small class="text-info">Threshold (average): {{ "%.2f"|format(threshold) }}</small>
                 </div>
             {% endif %}
 

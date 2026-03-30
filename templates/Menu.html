@@ -1,4 +1,86 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h2>Welcome</h2>
+
+<div class="text-center mb-5">
+    <h1>Machine Learning Project</h1>
+    <p class="lead mt-3">
+        Explore how machine learning models analyze and predict real-world data using oil import datasets.
+    </p>
+</div>
+
+<div class="row g-4">
+
+    <!-- Linear Regression -->
+    <div class="col-md-6">
+        <div class="card-custom text-center h-100">
+            <h3>Linear Regression</h3>
+            <p>
+                Predict the quantity of oil imports over time using historical data.
+            </p>
+
+            <a href="/Application" class="btn btn-success mt-2">
+                Go to Application
+            </a>
+        </div>
+    </div>
+
+    <!-- Logistic Regression -->
+    <div class="col-md-6">
+        <div class="card-custom text-center h-100">
+            <h3>Logistic Regression</h3>
+            <p>
+                Classify oil imports as High or Low based on probability.
+            </p>
+
+            <a href="/OilLogisticRegression" class="btn btn-success mt-2">
+                Go to Application
+            </a>
+        </div>
+    </div>
+
+    <!-- Concepts -->
+    <div class="col-md-6">
+        <div class="card-custom text-center h-100">
+            <h3>Basic Concepts</h3>
+            <p>
+                Learn the theoretical foundations of machine learning models.
+            </p>
+
+            <div class="dropdown mt-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    Learn More
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="/BasicConcepts">Linear Concepts</a></li>
+                    <li><a class="dropdown-item" href="/BasicConceptsLogistic">Logistic Concepts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="col-md-6">
+        <div class="card-custom text-center h-100">
+            <h3>Use Cases</h3>
+            <p>
+                Explore real-world applications of machine learning.
+            </p>
+
+            <div class="dropdown mt-2">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    View Cases
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="/FirstCase">Case 1</a></li>
+                    <li><a class="dropdown-item" href="/SecondCase">Case 2</a></li>
+                    <li><a class="dropdown-item" href="/ThirdCase">Case 3</a></li>
+                    <li><a class="dropdown-item" href="/FourthCase">Case 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}
