@@ -36,6 +36,10 @@ def basicConcepts():
 def application():
     return render_template("Application.html")
 
+@app.route("/BasicConceptsLogistic")
+def basicConceptsLogistic():
+    return render_template("BasicConceptsLogistic.html")
+
 @app.route("/OilLinearRegression", methods=["GET", "POST"])
 def LinearRegression():
     result = None
@@ -61,9 +65,16 @@ def oil_logistic():
 
     if request.method == "POST":
         year_value = int(request.form["year"])
-        result = predictOilCategory(year_value)
+        result, probability = predictOilCategory(year_value)
         plot = generatePlotLogistic(year_value)
     else:
-        plot = generatePlotLogistic()
+        probability = None
 
-    return render_template("OilLogisticRegression.html", result=result, plot=plot, year_value=year_value, threshold=threshold)
+    return render_template(
+    "OilLogisticRegression.html",
+    result=result,
+    probability=probability,
+    plot=plot,
+    year_value=year_value,
+    threshold=threshold
+)

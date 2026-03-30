@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-center mb-5">Logistic Regression – Basic Concepts</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-10">
+
+```
+    <!-- What is Logistic Regression -->
+    <div class="card-custom mb-4">
+        <h3>What is Logistic Regression?</h3>
+        <p>
+            Logistic Regression is a supervised machine learning algorithm used for 
+            <strong>classification problems</strong>. Instead of predicting a continuous value, 
+            it predicts the probability that an observation belongs to a certain category.
+        </p>
+        <p>
+            The output is a value between 0 and 1, which represents probability.
+        </p>
+
+        <div class="text-center mt-3">
+            <img src="https://i.ytimg.com/vi/HovUiBPojwo/sddefault.jpg" 
+                 alt="Logistic Curve" class="img-fluid">
+        </div>
+    </div>
+
+    <!-- Regression vs Classification -->
+    <div class="card-custom mb-4">
+        <h3>Regression vs Classification</h3>
+        <p><strong>Regression</strong> predicts continuous values (e.g., oil quantity, price).</p>
+        <p><strong>Classification</strong> predicts categories or classes (e.g., High vs Low imports).</p>
+
+        <div class="text-center mt-3">
+            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20250129121636823249/classification-vs-regression.webp" 
+                 alt="Regression vs Classification" class="img-fluid">
+        </div>
+    </div>
+
+    <!-- Binary Classification -->
+    <div class="card-custom mb-4">
+        <h3>Binary Classification</h3>
+        <p>
+            Logistic Regression is commonly used for <strong>binary classification</strong>.
+        </p>
+        <ul>
+            <li>0 → Negative / Low</li>
+            <li>1 → Positive / High</li>
+        </ul>
+
+        <div class="text-center mt-3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkSbhluscAP8oudWzIm-mXPPvmnzpqMWRWfA&s" 
+                 alt="Binary Classification" class="img-fluid">
+        </div>
+    </div>
+
+    <!-- Target Variable -->
+    <div class="card-custom mb-4">
+        <h3>Target Variable</h3>
+        <p>
+            The <strong>target variable</strong> is what we want to predict.
+            In logistic regression, it is usually categorical (0 or 1).
+        </p>
+    </div>
+
+    <!-- Predictor Variables -->
+    <div class="card-custom mb-4">
+        <h3>Predictor Variables</h3>
+        <p>
+            Predictor variables are the inputs used to make predictions 
+            (e.g., year, demand, price).
+        </p>
+    </div>
+
+    <!-- Probability -->
+    <div class="card-custom mb-4">
+        <h3>Probability</h3>
+        <p>
+            Logistic Regression outputs a <strong>probability</strong> between 0 and 1.
+        </p>
+        <ul>
+            <li>0.2 → Low probability of High Imports</li>
+            <li>0.8 → High probability of High Imports</li>
+        </ul>
+
+        <div class="text-center mt-3">
+            <img src="https://passfunctionalskills.co.uk/app/uploads/2021/08/Probability-Scale.png" 
+                 alt="Probability Scale" class="img-fluid">
+        </div>
+    </div>
+
+    <!-- Decision Boundary -->
+    <div class="card-custom mb-4">
+        <h3>Decision Boundary</h3>
+        <p>
+            The decision boundary separates one class from another based on probability.
+        </p>
+
+        <div class="text-center mt-3">
+            <img src="https://miro.medium.com/v2/1*aE8XLyApqvaQA9B7MWjjlA.png" 
+                 alt="Decision Boundary" class="img-fluid">
+        </div>
+    </div>
+
+    <!-- Threshold -->
+    <div class="card-custom mb-4">
+        <h3>Classification Threshold</h3>
+        <p>The typical threshold is 0.5:</p>
+        <ul>
+            <li>If probability ≥ 0.5 → Class 1 (High)</li>
+            <li>If probability &lt; 0.5 → Class 0 (Low)</li>
+        </ul>
+    </div>
+
+    <!-- Real Example -->
+    <div class="card-custom mb-4">
+        <h3>Real Example</h3>
+        <p>
+            In this project, logistic regression is used to classify oil imports as 
+            High or Low based on historical data.
+        </p>
+
+        <div class="text-center mt-3">
+            <img src="https://www.afpm.org/sites/default/files/styles/content_image/public/2025-03/nji-afpm-energysecurity-social-infographic-v7_Graphic%201-%201200%20x%20675.png?itok=7ojkIdY5" 
+                 alt="Oil Imports Example" class="img-fluid">
+        </div>
+    </div>
+
+    <!-- Button -->
+    <div class="text-center mt-4">
+        <a href="/OilLogisticRegression" class="btn btn-success">
+            Go to Application
+        </a>
+    </div>
+
+</div>
+```
+
+</div>
+
+{% endblock %}
