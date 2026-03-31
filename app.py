@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from LinearRegressionOil import predictOil, generatePlot as generatePlotLinear
 from LogisticRegressionOil import predictOilCategory, generatePlot as generatePlotLogistic, getThreshold
+from LinearDiscriminantAnalysis import generatePlot, predictOilCategoryLDA, getThreshold
 
 app = Flask(__name__)
 
@@ -40,6 +41,10 @@ def application():
 def basicConceptsLogistic():
     return render_template("BasicConceptsLogistic.html")
 
+@app.route("/BasicConceptsLDA")
+def ldaConcepts():
+    return render_template("BasicConceptsLDA.html")
+
 @app.route("/OilLinearRegression", methods=["GET", "POST"])
 def LinearRegression():
     result = None
@@ -56,6 +61,7 @@ def LinearRegression():
         plot = generatePlotLinear()
 
     return render_template("OilLinearRegression.html", result=result, plot=plot)
+
 @app.route("/OilLogisticRegression", methods=["GET", "POST"])
 def oil_logistic():
     result = None
@@ -78,3 +84,26 @@ def oil_logistic():
     year_value=year_value,
     threshold=threshold
 )
+
+
+@app.route("/LinearDiscriminantAnalysis", methods=["GET", "POST"])
+def oil_lda():
+    result = None
+    plot = None
+    year_value = None
+    probability = None
+    threshold = getThreshold()
+
+    if request.method == "POST":
+        year_value = int(request.form["year"])
+        result, probability = predictOilCategoryLDA(year_value)
+        plot = generatePlot(year_value)
+
+    return render_template(
+        "LinearDiscriminantAnalysis.html",
+        result=result,
+        probability=probability,
+        plot=plot,
+        year_value=year_value,
+        threshold=threshold
+    )
