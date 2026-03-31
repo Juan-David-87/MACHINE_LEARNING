@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-center mb-5">Oil Imports Classification — Linear Discriminant Analysis (LDA)</h1>
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+        <div class="card-custom text-center">
+
+            <h3>Enter Year</h3>
+
+            <form method="post">
+                <div class="mb-3">
+                    <input type="number" name="year" placeholder="e.g. 2009" required>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Predict
+                </button>
+            </form>
+
+            {% if result is not none %}
+                <div class="mt-4">
+                    <h4>Classification Result:</h4>
+                    <p>
+                        Probability of HIGH imports:
+                        <strong>{{ "%.3f"|format(probability) }}</strong>
+                    </p>
+
+                    {% if result == 1 %}
+                        <h2 class="text-warning">HIGH Imports ▲</h2>
+                        <p>
+                            The LDA model predicts that for year <strong>{{ year_value if year_value else "" }}</strong>,
+                            oil imports will be <strong>ABOVE AVERAGE</strong>.
+                        </p>
+                    {% else %}
+                        <h2 class="text-info">LOW Imports ▼</h2>
+                        <p>
+                            The LDA model predicts that for year <strong>{{ year_value if year_value else "" }}</strong>,
+                            oil imports will be <strong>BELOW AVERAGE</strong>.
+                        </p>
+                    {% endif %}
+
+                    <small class="text-muted">
+                        Quantity threshold (mean): <strong>{{ "%.2f"|format(threshold) }}</strong>
+                    </small>
+                </div>
+            {% endif %}
+
+            {% if plot %}
+                <div class="mt-4">
+                    <h4>LDA Decision Boundary Curve</h4>
+                    <img src="data:image/png;base64,{{ plot }}"
+                         class="img-fluid mt-3" alt="LDA Plot"/>
+                    <small class="text-muted d-block mt-2">
+                        Blue curve: LDA probability of High Imports<br>
+                        Dashed line: Decision threshold (0.5)<br>
+                        Blue point: High prediction · Orange point: Low prediction
+                    </small>
+                </div>
+            {% endif %}
+
+            <a href="/Menu" class="btn btn-secondary mt-4">Back to Menu</a>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
