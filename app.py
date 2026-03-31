@@ -40,6 +40,10 @@ def application():
 def basicConceptsLogistic():
     return render_template("BasicConceptsLogistic.html")
 
+@app.route("/BasicConceptsLDA")
+def ldaConcepts():
+    return render_template("BasicConceptsLDA.html")
+
 @app.route("/OilLinearRegression", methods=["GET", "POST"])
 def LinearRegression():
     result = None

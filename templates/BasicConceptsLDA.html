@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-center mb-5">Linear Discriminant Analysis (LDA) – Basic Concepts</h1>
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card-custom mb-4">
+            <h3>What is Linear Discriminant Analysis (LDA)?</h3>
+            <p>
+                Linear Discriminant Analysis (LDA) is a supervised machine learning algorithm 
+                used for <strong>classification and dimensionality reduction</strong>.
+            </p>
+            <p>
+                It finds a linear combination of features that best separates two or more classes.
+                Unlike regression models, LDA focuses on maximizing the difference between categories.
+            </p>
+            <div class="text-center mt-3">
+                <img src="data:image/png;base64,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" 
+                     alt="LDA visualization" class="img-fluid">
+            </div>
+        </div>
+        <div class="card-custom mb-4">
+            <h3>How Does LDA Work?</h3>
+            <p>
+                LDA works by projecting data onto a lower-dimensional space while maintaining 
+                class separability.
+            </p>
+            <ul>
+                <li>It calculates the mean of each class.</li>
+                <li>It measures the variance within each class.</li>
+                <li>It maximizes the distance between class means.</li>
+                <li>It minimizes the spread within each class.</li>
+            </ul>
+            <p>
+                The goal is to create a boundary that best separates different categories.
+            </p>
+            <div class="text-center mt-3">
+                <img src="https://scikit-learn.org/stable/_images/sphx_glr_plot_lda_001.png" 
+                     alt="LDA projection" class="img-fluid">
+            </div>
+        </div>
+        <div class="card-custom mb-4">
+            <h3>Characteristics</h3>
+            <ul>
+                <li>Supervised learning algorithm</li>
+                <li>Used for classification problems</li>
+                <li>Assumes linear boundaries between classes</li>
+                <li>Works well with normally distributed data</li>
+                <li>Reduces dimensionality while preserving class information</li>
+            </ul>
+        </div>
+        <div class="card-custom mb-4">
+            <h3>Advantages</h3>
+            <ul>
+                <li>Simple and computationally efficient</li>
+                <li>Works well with small datasets</li>
+                <li>Reduces overfitting by lowering dimensions</li>
+                <li>Improves class separability</li>
+            </ul>
+        </div>
+        <div class="card-custom mb-4">
+            <h3>Disadvantages</h3>
+            <ul>
+                <li>Assumes data is normally distributed</li>
+                <li>Not effective with non-linear boundaries</li>
+                <li>Sensitive to outliers</li>
+                <li>Requires labeled data</li>
+            </ul>
+        </div>
+        <div class="card-custom mb-4">
+            <h3>When is LDA Used?</h3>
+            <p>
+                LDA is commonly used when:
+            </p>
+            <ul>
+                <li>You need to classify data into categories</li>
+                <li>You want to reduce dimensionality before classification</li>
+                <li>Your dataset has clear linear separability</li>
+            </ul>
+            <div class="text-center mt-3">
+                <img src="https://i.ytimg.com/vi/-9R4UYjIcbY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCfSBUKaoROQM2Y03iIPqwg0_foMg" 
+                     alt="LDA boundary" class="img-fluid">
+            </div>
+        </div>
+        <div class="card-custom mb-4">
+            <h3>Real Example</h3>
+            <p>
+                A common real-world application of LDA is in <strong>face recognition systems</strong>.
+            </p>
+            <p>
+                The algorithm analyzes facial features and projects them into a lower-dimensional space
+                to distinguish between different individuals efficiently.
+            </p>
+
+            <div class="text-center mt-3">
+                <img src="https://omes-va.com/wp-content/uploads/2020/05/capturandoRostros.jpeg"
+                     alt="Face recognition example" class="img-fluid">
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/Menu" class="btn btn-success">
+                Back to Menu
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
