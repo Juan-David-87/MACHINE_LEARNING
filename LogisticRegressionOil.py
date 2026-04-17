@@ -4,23 +4,31 @@ import io
 import base64
 import numpy as np
 from sklearn.linear_model import LogisticRegression
-
+#for the graph with simodea curve, 
+# this function works to scale the years and make the curve look better.
+from sklearn.preprocessing import StandardScaler 
 df = pd.read_csv("US_Crude_Oil_Imports.csv")
 
-threshold = df["quantity"].mean()
-df["High_Imports"] = (df["quantity"] > threshold).astype(int)
+#this groups the data by year; it's important for the clarity of the graph
+df_grouped = df.groupby("year").agg({
+    "quantity": "mean"
+}).reset_index()
 
-X = df[["year"]]
-y = df["High_Imports"]
+threshold = df_grouped["quantity"].mean()
+df_grouped["High_Imports"] = (df_grouped["quantity"] > threshold).astype(int)
 
-#this function works to scale the years and make the curve look better.
-from sklearn.preprocessing import StandardScaler
+X = df_grouped[["year"]] #dependeent variable
+y = df_grouped["High_Imports"] #indeoendent variable
+
+#This scales the data for better visualization
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-model = LogisticRegression()
+#train the model
+model = LogisticRegression(max_iter=1000)
 model.fit(X_scaled, y)
 
+#funtions
 def getThreshold():
     return threshold
 
@@ -32,19 +40,20 @@ def predictOilCategory(year):
 
 def generatePlot(year_value=None):
     fig, ax = plt.subplots(figsize=(10, 6))
-    
+
     #sort the data
-    df_sorted = df.sort_values(by="year")
+    df_sorted = df_grouped.sort_values(by="year")
     
-    X_plot = df_sorted["year"].values
-    Y_plot = df_sorted["High_Imports"].values
+    X_plot = df_sorted["year"].values #dependent variable
+    Y_plot = df_sorted["High_Imports"].values #indeoendent variable
     
-    ax.scatter(X_plot, Y_plot, alpha=0.5, color='blue', label='Real Data (0=Dwarf, 1=Higt)')
-    
+    #for real points
+    ax.scatter(X_plot, Y_plot, alpha=0.7, label='Real Data (0=Low, 1=High)')
+
     #create a range of years to better see a smooth curve
-    year_min = df["year"].min() - 15
-    year_max = df["year"].max() + 15
-    X_smooth = np.linspace(year_min, year_max, 300).reshape(-1, 1)
+    year_min = df_grouped["year"].min() - 5
+    year_max = df_grouped["year"].max() + 5
+    X_smooth = np.linspace(year_min, year_max, 500).reshape(-1, 1)
     
     #scale de years for prediction
     X_smooth_scaled = scaler.transform(X_smooth)
@@ -53,35 +62,31 @@ def generatePlot(year_value=None):
     y_prob_smooth = model.predict_proba(X_smooth_scaled)[:, 1]
     
     #draw a smooth sigmoidea curve
-    ax.plot(X_smooth, y_prob_smooth, color='red', linewidth=2.5, label='Curve for Logistical Regression')
-    
+    ax.plot(X_smooth, y_prob_smooth, linewidth=2.5, label='Logistic Regression Curve')
+
     #umbral line dession
-    ax.axhline(y=0.5, color='gray', linestyle='--', alpha=0.7, linewidth=1.5, label='umbral (0.5)')
-    
+    ax.axhline(y=0.5, linestyle='--', linewidth=1.5, label='Threshold (0.5)')
+
     #view the prediction
     if year_value is not None:
-        year_scaled = scaler.transform([[year_value]])
-        prob = model.predict_proba(year_scaled)[0][1]
-        category = predictOilCategory(year_value)
-        
+        category, prob = predictOilCategory(year_value)
+
         #color category
         point_color = 'green' if category == 1 else 'orange'
         
-        ax.scatter(year_value, prob, color=point_color, s=120, 
-                  edgecolors='darkgreen' if category == 1 else 'darkorange', 
-                  linewidth=2, label=f'Prediction {year_value}')
-        ax.text(year_value, prob + 0.05, f"({year_value}, {round(prob,3)})", 
-               ha='center', fontsize=9, fontweight='bold')
+        ax.scatter(year_value, prob, s=120, label=f'Prediction {year_value}')
+        ax.text(year_value, prob + 0.05, f"({year_value}, {round(prob,3)})",
+                ha='center', fontsize=9, fontweight='bold')
     
     #here we configure labels and titles
     ax.set_xlabel("Year", fontsize=12)
     ax.set_ylabel("Probability of High Imports", fontsize=12)
     ax.set_title("Logistic Regression - Oil Imports Classification", fontsize=14, fontweight='bold')
-    
+
     #ciionfiure limits
     ax.set_ylim(-0.05, 1.05)
     ax.set_xlim(year_min, year_max)
-    
+        
     #agrage grid
     ax.grid(True, alpha=0.3)
     
