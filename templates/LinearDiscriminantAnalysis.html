@@ -44,20 +44,25 @@
                     {% endif %}
 
                     <small class="text-muted">
-                        Quantity threshold (mean): <strong>{{ "%.2f"|format(threshold) }}</strong>
+                        Quantity threshold (median): <strong>{{ "%.2f"|format(threshold) }}</strong>
                     </small>
                 </div>
             {% endif %}
 
             {% if plot %}
                 <div class="mt-4">
-                    <h4>LDA Decision Boundary Curve</h4>
+                    <h4>LDA Decision Boundary — Feature Space</h4>
                     <img src="data:image/png;base64,{{ plot }}"
                          class="img-fluid mt-3" alt="LDA Plot"/>
-                    <small class="text-muted d-block mt-2">
-                        Blue curve: LDA probability of High Imports<br>
-                        Dashed line: Decision threshold (0.5)<br>
-                        Blue point: High prediction · Orange point: Low prediction
+
+                    <small class="d-block mt-2" style="color: #8aa8bf; line-height: 1.8; font-size: 0.78rem;">
+
+                        P(HIGH | quantity): LDA posterior probability curve
+                        Vertical dashed line: decision boundary (quantity where P = 0.5)
+                        Horizontal dotted line: probability threshold (P = 0.5)
+                        Red points: observed HIGH imports
+                        Blue points: observed LOW imports
+                        Large outlined point: predicted year location in feature space
                     </small>
                 </div>
             {% endif %}
