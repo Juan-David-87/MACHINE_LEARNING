@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from LinearRegressionOil import predictOil, generatePlot as generatePlotLinear
 from LogisticRegressionOil import predictOilCategory, generatePlot as generatePlotLogistic, getThreshold
 from LinearDiscriminantAnalysis import generatePlot, predictOilCategoryLDA, getThreshold
+import Clustering
 
 app = Flask(__name__)
 
@@ -107,3 +108,9 @@ def oil_lda():
         year_value=year_value,
         threshold=threshold
     )
+
+
+@app.route("/Clustering")
+def clustering(): 
+    data = Clustering.applyClustering()
+    return str(data["clustersSummary"])
