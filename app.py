@@ -107,3 +107,7 @@ def oil_lda():
         year_value=year_value,
         threshold=threshold
     )
+
+@app.route('/ClusteringConcepts')
+def clustering_concepts():
+    return render_template("clusteringConcepts.html")
