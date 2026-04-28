@@ -111,3 +111,12 @@ def oil_lda():
 @app.route('/ClusteringConcepts')
 def clustering_concepts():
     return render_template("clusteringConcepts.html")
+
+@app.route('/KMeansManualExercise')
+def kmeans_manual():
+    return render_template("KMeansManualExercise.html")
+
+@app.route('/ClusteringApplication')
+def clustering_application():
+    # Aquí irá la lógica de machine learning más adelante
+    return render_template("ClusteringApplication.html")
