@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}Clustering Basic Concepts{% endblock %}
+
+{% block content %}
+
+<div class="text-center mb-5">
+    <h1>Unsupervised Machine Learning</h1>
+    <h2 class="mt-3">Basic Concepts of Clustering</h2>
+    <p class="lead mt-3">
+        Understand how clustering works and how K-Means helps discover hidden patterns in data without labeled outputs.
+    </p>
+</div>
+
+<div class="row g-4">
+
+    <!-- Unsupervised Learning -->
+    <div class="col-md-6">
+        <div class="card-custom h-100">
+            <img src="https://analystprep.com/study-notes/wp-content/uploads/2021/03/Img_12.jpg"
+                 class="img-fluid mb-3"
+                 alt="Unsupervised Learning">
+
+            <h3>What is Unsupervised Learning?</h3>
+            <p>
+                Unsupervised learning is a type of machine learning where the model works with data that has no predefined labels.
+                Its goal is to discover hidden structures, patterns, or relationships within the dataset automatically.
+            </p>
+        </div>
+    </div>
+
+    <!-- Clustering -->
+    <div class="col-md-6">
+        <div class="card-custom h-100">
+            <img src="https://images.squarespace-cdn.com/content/v1/5a07c63e18b27d4c1ef5e91d/1512104633710-8S862ZTH13R8JBV2YW9V/cluster_subplots.png"
+                 class="img-fluid mb-3"
+                 alt="Clustering Example">
+
+            <h3>What is Clustering?</h3>
+            <p>
+                Clustering is an unsupervised learning technique used to group similar data points together.
+                Objects inside the same cluster are more similar to each other than to those in other clusters.
+            </p>
+        </div>
+    </div>
+
+    <!-- K-Means -->
+    <div class="col-md-6">
+        <div class="card-custom h-100">
+            <img src="https://miro.medium.com/v2/1*rw8IUza1dbffBhiA4i0GNQ.png"
+                 class="img-fluid mb-3"
+                 alt="KMeans Example">
+
+            <h3>What is K-Means?</h3>
+            <p>
+                K-Means is one of the most popular clustering algorithms. It divides data into K groups (clusters),
+                where each observation belongs to the cluster with the nearest center.
+            </p>
+        </div>
+    </div>
+
+    <!-- Centroids -->
+    <div class="col-md-6">
+        <div class="card-custom h-100">
+            <img src="https://miro.medium.com/v2/1*npH93rDwRZDZR37-6wbrOw.png"
+                 class="img-fluid mb-3"
+                 alt="Centroids Example">
+
+            <h3>Centroids</h3>
+            <p>
+                A centroid is the center point of a cluster. It represents the average position of all points inside that group.
+                During training, centroids are updated repeatedly until the best cluster structure is found.
+            </p>
+        </div>
+    </div>
+
+    <!-- Distance -->
+    <div class="col-md-6">
+        <div class="card-custom h-100">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Euclidean_distance_2d.svg/1280px-Euclidean_distance_2d.svg.png"
+                 class="img-fluid mb-3"
+                 alt="Euclidean Distance">
+
+            <h3>Distance Metrics (Euclidean Distance)</h3>
+            <p>
+                K-Means commonly uses Euclidean Distance to measure similarity between points and centroids.
+                The smaller the distance, the more likely a point belongs to that cluster.
+            </p>
+            <p>
+                Formula:
+                <br>
+                d = √((x₂ - x₁)² + (y₂ - y₁)²
+            </p>
+        </div>
+    </div>
+
+    <!-- Iterative Process -->
+    <div class="col-md-6">
+        <div class="card-custom h-100">
+            <img src="https://miro.medium.com/v2/1*ZN6cDw34wEO-dxydDwY4vA.png"
+                 class="img-fluid mb-3"
+                 alt="Iterative Process">
+
+            <h3>Iterative Process</h3>
+            <p>
+                K-Means works through repetition:
+            </p>
+            <ul>
+                <li>Select K initial centroids</li>
+                <li>Assign each point to the nearest centroid</li>
+                <li>Recalculate centroids</li>
+                <li>Repeat until clusters stop changing</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Variance -->
+    <div class="col-md-6">
+        <div class="card-custom">
+            <img src="https://dphi-live.s3.amazonaws.com/media_uploads/image_5d627b3744404f83a4980a968370929c.png"
+                 class="img-fluid mb-3"
+                 alt="Variance and Convergence">
+
+            <h3>Variance and Convergence</h3>
+            <p>
+                K-Means tries to minimize variance inside each cluster, meaning points should be as close as possible
+                to their centroid. The algorithm converges when centroid positions no longer change significantly.
+            </p>
+        </div>
+    </div>
+
+    <!-- Applications -->
+    <div class="col-md-6">
+        <div class="card-custom">
+            <img src="https://miro.medium.com/v2/1*rFATWK6tWBrDJ1o1rzEZ8w.png"
+                 class="img-fluid mb-3"
+                 alt="Real World Applications">
+
+            <h3>Real-World Applications</h3>
+            <p>
+                Clustering is used in many industries:
+            </p>
+            <ul>
+                <li>Customer segmentation in marketing</li>
+                <li>Medical image analysis</li>
+                <li>Fraud detection</li>
+                <li>Document classification</li>
+                <li>Recommendation systems</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
