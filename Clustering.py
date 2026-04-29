@@ -9,8 +9,10 @@ def getDataSet():
     # Load dataset
     df = pd.read_csv("real_drug_dataset.csv")
     
-    # Use exact column names from your CSV
-    features = ["Dosis_mg", "Puntuación de mejora"]
+    # Nombres exactos extraídos de tu revisión
+    features = ["Dosage_mg", "Improvement_Score"]
+    
+    # Filtramos y eliminamos nulos
     df_model = df[features].dropna()
     
     return df_model
@@ -29,15 +31,14 @@ def AppClusteringKmeans(k=3):
 
     df["Cluster"] = labels
 
-    # Cluster Summary (Count per cluster)
+    # Cluster Summary
     summary = df["Cluster"].value_counts().to_dict()
 
-    # Centroids (Inverse transformed to original scale for accurate plotting)
-    centers_scaled = model.cluster_centers_
-    centers_original = scaler.inverse_transform(centers_scaled)
+    # Centroids (Inverse transform to original scale)
+    centers_original = scaler.inverse_transform(model.cluster_centers_)
     centers_list = centers_original.tolist()
 
-    # Sample records for the results table (5 per cluster to keep UI clean)
+    # Sample records
     sampled = []
     for cluster_id in range(k):
         group = df[df["Cluster"] == cluster_id]
@@ -47,16 +48,14 @@ def AppClusteringKmeans(k=3):
     # Plotting
     plt.figure(figsize=(8, 6))
     
-    # Data points
     plt.scatter(
-        df["Dosis_mg"], 
-        df["Puntuación de mejora"], 
+        df["Dosage_mg"], 
+        df["Improvement_Score"], 
         c=df["Cluster"], 
         cmap='viridis', 
         alpha=0.6
     )
 
-    # Centroids
     plt.scatter(
         centers_original[:, 0], 
         centers_original[:, 1], 
@@ -66,9 +65,9 @@ def AppClusteringKmeans(k=3):
         label='Centroids'
     )
 
-    plt.xlabel("Dose (mg)")
+    plt.xlabel("Dosage (mg)")
     plt.ylabel("Improvement Score")
-    plt.title("Patient Clustering: Dose vs Improvement")
+    plt.title("Patient Clustering: Dosage vs Improvement")
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.3)
 
