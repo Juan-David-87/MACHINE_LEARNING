@@ -120,12 +120,11 @@ def kmeans_manual():
 @app.route('/ClusteringApplication', methods=['GET', 'POST'])
 def clustering_application():
     data = None
-    k_value = 3 # Default K value
+    k_value = 3 #This will be the default value for K
 
     if request.method == "POST":
-        # Get 'k' from form, default to 3 if something fails
+        #Here we get K from the form and if something fails, by default it will be 3
         k_value = int(request.form.get("k_clusters", 3))
-        # Execute model
         data = AppClusteringKmeans(k=k_value)
 
     return render_template(
