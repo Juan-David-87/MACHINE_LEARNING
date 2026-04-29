@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
@@ -6,50 +7,48 @@ import base64
 from io import BytesIO
 
 def getDataSet():
-    # Load dataset
     df = pd.read_csv("real_drug_dataset.csv")
     
-    # Nombres exactos extraídos de tu revisión
     features = ["Dosage_mg", "Improvement_Score"]
-    
-    # Filtramos y eliminamos nulos
     df_model = df[features].dropna()
     
     return df_model
 
 def AppClusteringKmeans(k=3):
-    df = getDataSet()
+    df = getDataSet().copy()
     X = df.values
 
     # Scaling
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
 
-    # Model training
+    # Model
     model = KMeans(n_clusters=k, random_state=42, n_init=10)
     labels = model.fit_predict(X_scaled)
 
     df["Cluster"] = labels
 
-    # Cluster Summary
+    # Summary
     summary = df["Cluster"].value_counts().to_dict()
 
-    # Centroids (Inverse transform to original scale)
+    # Centroids
     centers_original = scaler.inverse_transform(model.cluster_centers_)
     centers_list = centers_original.tolist()
 
-    # Sample records
+    # Sample
     sampled = []
     for cluster_id in range(k):
         group = df[df["Cluster"] == cluster_id]
         sample = group.sample(min(5, len(group)), random_state=42)
         sampled.extend(sample.to_dict(orient="records"))
 
-    # Plotting
+    jitter = np.random.normal(0, 100, size=len(df))
+
+    # Plot
     plt.figure(figsize=(8, 6))
     
     plt.scatter(
-        df["Dosage_mg"], 
+        df["Dosage_mg"] + jitter, 
         df["Improvement_Score"], 
         c=df["Cluster"], 
         cmap='viridis', 
@@ -71,14 +70,13 @@ def AppClusteringKmeans(k=3):
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.3)
 
-    # Save to Base64
+    # Save
     buffer = BytesIO()
     plt.savefig(buffer, format="png", bbox_inches="tight")
     buffer.seek(0)
-    image_png = buffer.getvalue()
-    buffer.close()
     
-    graph = base64.b64encode(image_png).decode("utf-8")
+    graph = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    buffer.close()
     plt.close()
 
     return {
