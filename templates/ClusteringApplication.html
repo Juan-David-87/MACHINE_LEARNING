@@ -95,8 +95,8 @@
                     <tbody>
                         {% for row in data.results %}
                         <tr>
-                            <td>{{ "%.2f"|format(row['Dosis_mg']) }}</td>
-                            <td>{{ "%.2f"|format(row['Puntuación de mejora']) }}</td>
+                            <td>{{ "%.2f"|format(row['Dosage_mg']) }}</td>
+                            <td>{{ "%.2f"|format(row['Improvement_Score']) }}</td>
                             <td><span class="badge bg-primary">Cluster {{ row['Cluster'] }}</span></td>
                         </tr>
                         {% endfor %}
