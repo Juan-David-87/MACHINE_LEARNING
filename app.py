@@ -116,7 +116,7 @@ def clustering():
 
 @app.route('/ClusteringConcepts')
 def clustering_concepts():
-    return render_template("clusteringConcepts.html")
+    return render_template("ClusteringConcepts.html")
 
 @app.route('/KMeansManualExercise')
 def KMeansManualExercise():
