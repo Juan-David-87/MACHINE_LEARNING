@@ -1,48 +1,87 @@
+import pandas as pd
+import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
 
-def getData():
-    return [{"nombre": "Ana", "edad": 22, "ingresos": 1200, "gasto": 300},
-        {"nombre": "Luis", "edad": 25, "ingresos": 1500, "gasto": 350},
-        {"nombre": "Carlos", "edad": 23, "ingresos": 1300, "gasto": 280},
-        {"nombre": "Marta", "edad": 45, "ingresos": 4000, "gasto": 1200},
-        {"nombre": "Sofía", "edad": 50, "ingresos": 4200, "gasto": 1400},
-        {"nombre": "Jorge", "edad": 47, "ingresos": 3900, "gasto": 1100},
-        {"nombre": "Elena", "edad": 31, "ingresos": 2500, "gasto": 700},
-        {"nombre": "Pedro", "edad": 33, "ingresos": 2700, "gasto": 750},
-        {"nombre": "Laura", "edad": 29, "ingresos": 2400, "gasto": 680},
-        {"nombre": "Andrés", "edad": 52, "ingresos": 5000, "gasto": 1600},
-        {"nombre": "Camila", "edad": 21, "ingresos": 1100, "gasto": 250},
-        {"nombre": "Diego", "edad": 38, "ingresos": 3200, "gasto": 900}]
-
-def applyClustering():
-    data=getData()
-
-    x = [[person["edad"],person["ingresos"],person["gasto"]]for person in data] 
-    sclaer = StandardScaler()
-    xscaled = sclaer.fit_transform(x)
-    model = KMeans(n_clusters=3, random_state=42, n_init=10)
-    labels = model.fit_predict(xscaled)
-
-    result = []
-    for i, person in enumerate(data):
-        row = person.copy()
-        row["cluster"] = int(labels[i])
-        result.append(row)
-
-    clustersSummary = {} 
+def getDataSet():
+    df = pd.read_csv("real_drug_dataset.csv")
     
-    for label in labels:
-        label = int(label)
-        clustersSummary[label] = clustersSummary.get(label, 0) + 1
+    features = ["Dosage_mg", "Improvement_Score"]
+    df_model = df[features].dropna()
+    
+    return df_model
 
-    centers = model.cluster_centers_.tolist()
+def AppClusteringKmeans(k=3):
+    df = getDataSet().copy()
+    X = df.values
 
-    return{
-        "result": result,
-        "clustersSummary": clustersSummary,
-        "centers": centers
+    # Scaling
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    # Model
+    model = KMeans(n_clusters=k, random_state=42, n_init=10)
+    labels = model.fit_predict(X_scaled)
+
+    df["Cluster"] = labels
+
+    # Summary
+    summary = df["Cluster"].value_counts().to_dict()
+
+    # Centroids
+    centers_original = scaler.inverse_transform(model.cluster_centers_)
+    centers_list = centers_original.tolist()
+
+    # Sample
+    sampled = []
+    for cluster_id in range(k):
+        group = df[df["Cluster"] == cluster_id]
+        sample = group.sample(min(5, len(group)), random_state=42)
+        sampled.extend(sample.to_dict(orient="records"))
+
+    jitter = np.random.normal(0, 100, size=len(df))
+
+    # Plot
+    plt.figure(figsize=(8, 6))
+    
+    plt.scatter(
+        df["Dosage_mg"] + jitter, 
+        df["Improvement_Score"], 
+        c=df["Cluster"], 
+        cmap='viridis', 
+        alpha=0.6
+    )
+
+    plt.scatter(
+        centers_original[:, 0], 
+        centers_original[:, 1], 
+        c='red', 
+        marker='X', 
+        s=200, 
+        label='Centroids'
+    )
+
+    plt.xlabel("Dosage (mg)")
+    plt.ylabel("Improvement Score")
+    plt.title("Patient Clustering: Dosage vs Improvement")
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.3)
+
+    # Save    
+    buffer = BytesIO()
+    plt.savefig(buffer, format="png", bbox_inches="tight")
+    buffer.seek(0)
+    
+    graph = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    buffer.close()
+    plt.close()
+
+    return {
+        "results": sampled,
+        "summary": summary,
+        "centers": centers_list,
+        "graph": graph
     }
-
-
-    

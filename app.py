@@ -2,9 +2,7 @@ from flask import Flask, render_template, request
 from LinearRegressionOil import predictOil, generatePlot as generatePlotLinear
 from LogisticRegressionOil import predictOilCategory, generatePlot as generatePlotLogistic, getThreshold
 from LinearDiscriminantAnalysis import generatePlot, predictOilCategoryLDA, getThreshold
-import Clustering
-import matplotlib.pyplot as plt
-import os
+from Clustering import AppClusteringKmeans
 
 app = Flask(__name__)
 
@@ -124,7 +122,18 @@ def clustering_concepts():
 def KMeansManualExercise():
     return render_template('KMeansManualExercise.html')
 
-@app.route('/ClusteringApplication')
+@app.route('/ClusteringApplication', methods=['GET', 'POST'])
 def clustering_application():
-    # Aquí irá la lógica de machine learning más adelante
-    return render_template("ClusteringApplication.html")
+    data = None
+    k_value = 3 #This will be the default value for K
+
+    if request.method == "POST":
+        #Here we get K from the form and if something fails, by default it will be 3
+        k_value = int(request.form.get("k_clusters", 3))
+        data = AppClusteringKmeans(k=k_value)
+
+    return render_template(
+        "ClusteringApplication.html", 
+        data=data, 
+        k_value=k_value
+    )
