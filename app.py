@@ -2,6 +2,9 @@ from flask import Flask, render_template, request
 from LinearRegressionOil import predictOil, generatePlot as generatePlotLinear
 from LogisticRegressionOil import predictOilCategory, generatePlot as generatePlotLogistic, getThreshold
 from LinearDiscriminantAnalysis import generatePlot, predictOilCategoryLDA, getThreshold
+import Clustering
+import matplotlib.pyplot as plt
+import os
 
 app = Flask(__name__)
 
@@ -107,3 +110,21 @@ def oil_lda():
         year_value=year_value,
         threshold=threshold
     )
+
+@app.route("/Clustering")
+def clustering(): 
+    data = Clustering.applyClustering()
+    return str(data["clustersSummary"])
+
+@app.route('/ClusteringConcepts')
+def clustering_concepts():
+    return render_template("clusteringConcepts.html")
+
+@app.route('/KMeansManualExercise')
+def KMeansManualExercise():
+    return render_template('KMeansManualExercise.html')
+
+@app.route('/ClusteringApplication')
+def clustering_application():
+    # Aquí irá la lógica de machine learning más adelante
+    return render_template("ClusteringApplication.html")
