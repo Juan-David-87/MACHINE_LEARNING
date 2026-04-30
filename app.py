@@ -123,7 +123,7 @@ def clustering_application():
     k_value = 3 #This will be the default value for K
 
     if request.method == "POST":
-        #Here we get K from the form and if something fails, by default it will be 3
+        #Here we get K from the form and if something fails, by default it will be 3.
         k_value = int(request.form.get("k_clusters", 3))
         data = AppClusteringKmeans(k=k_value)
 
