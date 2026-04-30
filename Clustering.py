@@ -70,7 +70,7 @@ def AppClusteringKmeans(k=3):
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.3)
 
-    # Save
+    # Save  
     buffer = BytesIO()
     plt.savefig(buffer, format="png", bbox_inches="tight")
     buffer.seek(0)
